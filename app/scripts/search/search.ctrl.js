@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('SearchCtrl', [ 'SearchSrv', '$rootScope', '$stateParams','$location', 'toastr',
-  function ( searchSrv, $rootScope, $stateParams, $location, toastr) {
+  .controller('SearchCtrl', [ 'SearchSrv', '$rootScope', '$stateParams','$state', 'toastr',
+  function ( searchSrv, $rootScope, $stateParams, $state, toastr) {
 
     var searchCtrl = this;
     
     searchCtrl.entity = {};
+    
+    $rootScope.pageTitle = "Search";
 
     searchCtrl.cancel = function(){
-      $location.go("main");
+      $state.go("main");
     };
 
     searchCtrl.submit = function(){
