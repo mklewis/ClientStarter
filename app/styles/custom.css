@@ -1,0 +1,46 @@
+a:focus {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.services {
+  text-align: center;
+}
+.service-icon {
+    color: #aaaaaa;
+    transition: all 0.3s ease-in-out;
+    font-size: 30px;
+}
+.alpha,.bravo,.charlie,.delta,.echo,.foxtrot,.golf {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.alpha:hover .service-icon {
+  color: #db3694;
+}
+.bravo:hover .service-icon {
+    color: #673075;
+}
+.charlie:hover .service-icon {
+  color: #ff7900; 
+}
+.delta:hover .service-icon {
+    color: #3897c9;
+}
+.echo:hover .service-icon {
+    color: #5cb85c;
+}
+.foxtrot:hover .service-icon {
+  color: #ffc400;
+}
+
+.golf:hover .service-icon {
+  color: #e42525;
+}
+
+
+
+
+
+
