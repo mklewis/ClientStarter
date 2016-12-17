@@ -18,6 +18,13 @@ angular.module('clientApp')
             templateUrl: 'views/search.form.html',
             controller: 'SearchCtrl',
             controllerAs: 'searchCtrl'
+        })
+        .state({
+            name: 'table',
+            url: '/table',
+            templateUrl: 'views/table.html',
+            controller: 'TableCtrl',
+            controllerAs: 'tableCtrl'
         });
 
 

@@ -12,6 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
     <link rel="stylesheet" href="styles/mean-bootstrap.css">
     <link rel="stylesheet" href="styles/custom.css">
     <!-- endbuild -->
@@ -61,33 +62,27 @@
               <a class="router-link-active" ui-sref="search" title="Search"><i class="menu-icon glyphicon glyphicon-search"></i>Search
               </a>
           </li>
+          <li class="sidebar-list-echo">
+              <a class="router-link-active" ui-sref="table" title="Table Example"><i class="menu-icon glyphicon glyphicon-th-list"></i>Table Example
+              </a>
+          </li>
       </ul>
   </div>
     <div class="container">
       <ui-view></ui-view>
     </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
+   
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-media-queries/match-media.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -97,6 +92,7 @@
         <script src="scripts/routestate.js"></script>
         <script src="scripts/main/main.ctrl.js"></script>
         <script src="scripts/search/search.ctrl.js"></script>
+        <script src="scripts/table/table.ctrl.js"></script>
         <script src="scripts/search/search.srv.js"></script>
         <!-- endbuild -->
 </body>

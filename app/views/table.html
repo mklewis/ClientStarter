@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <table st-table="tableCtrl.showing"  st-safe-src="tableCtrl.smartTableData" 
+        class="table table-striped" st-class-ascent="fa fa-caret-down" st-class-descent="fa fa-caret-up">
+            <thead>
+                <tr>
+                    <th st-sort="engine">Rendering engine</th>
+                    <th st-sort="browser">Browser</th>
+                    <th ng-if="tableCtrl.media_lg || tableCtrl.media_md" st-sort="platform">Platform(s)</th>
+                    <th ng-if="tableCtrl.media_lg || tableCtrl.media_md" st-sort="version">Engine version</th>
+                    <th ng-if="tableCtrl.media_lg" st-sort="gradeStyle">CSS grade</th>
+                </tr>
+                <tr>
+                    <th>
+                        <input st-search="engine" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th>
+                        <input st-search="browser" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th ng-if="tableCtrl.media_lg || tableCtrl.media_md">
+                        <input st-search="platform" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th ng-if="tableCtrl.media_lg || tableCtrl.media_md">
+                        <input st-search="version" class="input-sm form-control" type="search"/>
+                    </th>
+                    <th ng-if="tableCtrl.media_lg">
+                        <input st-search="gradeStyle" class="input-sm form-control" type="search"/>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in tableCtrl.showing" ng-click="tableCtrl.showDetail(item);" >
+                    <td> <span ng-if="!tableCtrl.media_lg" class="fa" ng-class="{'fa-caret-right': !item.show, 'fa-caret-down': item.show}"> </span> {{item.engine}}</td>
+                    <td>{{item.browser}}</td>
+                    <td ng-if="tableCtrl.media_lg || tableCtrl.media_md">{{item.platform}}</td>
+                    <td ng-if="tableCtrl.media_lg || tableCtrl.media_md">{{item.version}}</td>
+                    <td ng-if="tableCtrl.media_lg">{{item.gradeStyle}}</td>
+                </tr>
+                <tr ng-repeat-end ng-if="item.show && !tableCtrl.media_lg">
+                    <td colspan=5>
+                        <ul>
+                            <!--<li ng-if="tableCtrl.media_xs">Browser: {{item.browser}}</li>-->
+                            <li ng-if="tableCtrl.media_xs">Platform(s): {{item.platform}}</li>
+                            <li ng-if="tableCtrl.media_xs">Engine version: {{item.version}}</li>
+                            <li ng-if="tableCtrl.media_xs || tableCtrl.media_md">CSS grade: {{item.gradeStyle}}</li>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="tableCtrl.itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+  </div>
+</div>

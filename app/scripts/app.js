@@ -14,5 +14,7 @@ var app = angular
     'ngSanitize',
     'ui.router',
     'toastr',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'smart-table',  
+    'matchMedia' 
   ]);
