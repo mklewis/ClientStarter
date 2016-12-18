@@ -9,9 +9,9 @@
     "angular-ui-router": "0.3.1",
     "angular-toastr": "~2.1.1",
     "font-awesome": "^4.7.0",
-    
     "angular-smart-table": "2.1.8",
-    "angular-media-queries": "^0.6.1"
+    "angular-media-queries": "^0.6.1",
+    "lodash": "^4.17.2"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8"
