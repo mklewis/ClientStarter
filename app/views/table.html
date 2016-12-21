@@ -16,20 +16,28 @@
         class="table table-striped">
             <thead>
                 <tr>
-                    <th ng-repeat="head in tableCtrl.headings" st-sort="{{tableCtrl.isSortable(head.name)}}" st-class-ascent="{{tableCtrl.getSortClass(head.name,true)}}" st-class-descent="{{tableCtrl.getSortClass(head.name,false)}}" ng-if="tableCtrl.shouldShow(head.name, false)">
+                    <th ng-repeat="head in tableCtrl.headings" 
+                        st-sort="{{tableCtrl.isSortable(head.name)}}" 
+                        st-class-ascent="{{tableCtrl.getSortClass(head.name,true)}}" 
+                        st-class-descent="{{tableCtrl.getSortClass(head.name,false)}}" 
+                        ng-if="tableCtrl.shouldShow(head.name, false)">
                         {{head.title}}
                     </th>
                 </tr>
                 <tr>
                     <th ng-repeat="head in tableCtrl.headings">
-                        <input ng-if="head.filter && tableCtrl.shouldShow(head.name, false)" st-search="{{head.name}}" ng-class="{'input-sm form-control': head.filter}" type="{{head.filterType}}"/>
+                        <input ng-if="head.filter && tableCtrl.shouldShow(head.name, false)" 
+                        st-search="{{head.name}}" 
+                        ng-class="{'input-sm form-control': head.filter}" 
+                        type="{{head.filterType}}"/>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat-start="item in tableCtrl.showing" ng-click="tableCtrl.showDetail(item);" >
                     <td ng-repeat="head in tableCtrl.headings" ng-if="tableCtrl.shouldShow(head.name, false)"> 
-                        <span ng-if="tableCtrl.detailsToShow() && $index == 0" class="fa" ng-class="{'fa-caret-right': !item.show, 'fa-caret-down': item.show}"> </span> 
+                        <span ng-if="tableCtrl.detailsToShow() && $index == 0" class="fa" 
+                        ng-class="{'fa-caret-right': !item.show, 'fa-caret-down': item.show}"> </span> 
                         {{item[head.name]}}
                     </td>
                 </tr>

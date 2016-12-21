@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <!--<div class="row">
+        <pre>
+            {{ngtableCtrl.shouldShow('gradeStyle', false);}}
+            {{ngtableCtrl.shouldShow('gradeStyle', true);}}
+            {{ngtableCtrl.media_lg}}
+            {{ngtableCtrl.media_md}}
+            {{ngtableCtrl.media_sm}}
+            {{ngtableCtrl.media_xs}}
+            {{ngtableCtrl.headings.length}}
+        </pre>
+    </div>-->
+<div class="row">
+      <table ng-table="ngtableCtrl.tableParams" class="table" show-filter="true">
+            <tbody ng-repeat="item in $data">
+            <tr ng-click="ngtableCtrl.showDetail(item);">
+
+                <td title="'Engine'" filter="{ engine: 'text'}" sortable="'engine'">
+                    <span ng-if="ngtableCtrl.detailsToShow()" class="fa" 
+                        ng-class="{'fa-caret-right': !item.show, 'fa-caret-down': item.show}"> </span> 
+                    {{item.engine}}</td>
+                <td title="'Browser'" filter="{ browser: 'text'}" sortable="'browser'">
+                    {{item.browser}}</td>
+            </tr>
+            
+            <tr ng-if="item.show && ngtableCtrl.detailsToShow()">
+
+                <td colspan="6">
+                    <ul>
+                        <li ng-if="ngtableCtrl.shouldShow('engine', true)"> Engine: {{item.engine}}</li>
+                        <li ng-if="ngtableCtrl.shouldShow('browser', true)"> Browser: {{item.browser}}</li>
+                        <li ng-if="ngtableCtrl.shouldShow('platform', true)">Platform: {{item.platform}}</li>
+                        <li ng-if="ngtableCtrl.shouldShow('version', true)">Version: {{item.version}}</li>
+                        <li ng-if="ngtableCtrl.shouldShow('gradeStyle', true)">   Grade: {{item.gradeStyle}}</li>
+                    </ul>
+                </td>                           
+            </tr>
+            </tbody>
+        </table>
+</div>
+<!--<div class="row">
+    <table st-table="ngtableCtrl.showing"  st-safe-src="ngtableCtrl.smartTableData" 
+        class="table table-striped">
+            <thead>
+                <tr>
+                    <th ng-repeat="head in ngtableCtrl.headings" 
+                        st-sort="{{ngtableCtrl.isSortable(head.name)}}" 
+                        st-class-ascent="{{ngtableCtrl.getSortClass(head.name,true)}}" 
+                        st-class-descent="{{ngtableCtrl.getSortClass(head.name,false)}}" 
+                        ng-if="ngtableCtrl.shouldShow(head.name, false)">
+                        {{head.title}}
+                    </th>
+                </tr>
+                <tr>
+                    <th ng-repeat="head in ngtableCtrl.headings">
+                        <input ng-if="head.filter && ngtableCtrl.shouldShow(head.name, false)" 
+                        st-search="{{head.name}}" 
+                        ng-class="{'input-sm form-control': head.filter}" 
+                        type="{{head.filterType}}"/>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in ngtableCtrl.showing" ng-click="ngtableCtrl.showDetail(item);" >
+                    <td ng-repeat="head in ngtableCtrl.headings" ng-if="ngtableCtrl.shouldShow(head.name, false)"> 
+                        <span ng-if="ngtableCtrl.detailsToShow() && $index == 0" class="fa" 
+                        ng-class="{'fa-caret-right': !item.show, 'fa-caret-down': item.show}"> </span> 
+                        {{item[head.name]}}
+                    </td>
+                </tr>
+                <tr ng-repeat-end ng-if="item.show && ngtableCtrl.detailsToShow()">
+                    <td colspan="{{ngtableCtrl.headings.length}}">
+                        <ul>
+                            <li ng-repeat="head in ngtableCtrl.headings" ng-if="ngtableCtrl.shouldShow(head.name, true)">
+                                {{head.title}}: {{item[head.name]}}
+                            </li>
+                        </ul>
+                    </td>                           
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="{{ngtableCtrl.headings.length}}" class="text-center">
+                        <div st-pagination="" st-items-by-page="ngtableCtrl.itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>-->
+  </div>
+</div>

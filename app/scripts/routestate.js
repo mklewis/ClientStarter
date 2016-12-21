@@ -25,6 +25,12 @@ angular.module('clientApp')
             templateUrl: 'views/table.html',
             controller: 'TableCtrl',
             controllerAs: 'tableCtrl'
+        }).state({
+            name: 'ngtable',
+            url: '/ngtable',
+            templateUrl: 'views/ngtable.html',
+            controller: 'NgTableCtrl',
+            controllerAs: 'ngtableCtrl'
         });
 
 

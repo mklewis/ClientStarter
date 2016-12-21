@@ -39,6 +39,7 @@ angular.module('clientApp')
             return '';
         }
     };
+
     tableCtrl.getSortClass = function(heading, ascent){
         var h = _.find(tableCtrl.headings, {'name': heading});
         if(h.sort){
@@ -50,10 +51,11 @@ angular.module('clientApp')
         }else{
             return '';
         }
-    }
+    };
+
     tableCtrl.showDetail =function(item){
         item.show = !item.show;
-    }
+    };
 
     tableCtrl.detailsToShow = function(){
         var show = false;
@@ -63,7 +65,8 @@ angular.module('clientApp')
             }
         });
         return show;
-    }
+    };
+
     tableCtrl.shouldShow = function(colName, isDetailRow){
         var col = _.find(tableCtrl.headings, {'name': colName});
         if(!col.collapseAt){

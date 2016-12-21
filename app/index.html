@@ -66,6 +66,10 @@
               <a class="router-link-active" ui-sref="table" title="Table Example"><i class="menu-icon glyphicon glyphicon-th-list"></i>Table Example
               </a>
           </li>
+          <li class="sidebar-list-bravo">
+              <a class="router-link-active" ui-sref="ngtable" title="Ng Table Example"><i class="menu-icon glyphicon glyphicon-th-list"></i>NG Table Example
+              </a>
+          </li>
       </ul>
   </div>
     <div class="container">
@@ -87,14 +91,18 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/config.js"></script>
-        <script src="scripts/routestate.js"></script>
-        <script src="scripts/main/main.ctrl.js"></script>
-        <script src="scripts/search/search.ctrl.js"></script>
-        <script src="scripts/table/table.ctrl.js"></script>
-        <script src="scripts/search/search.srv.js"></script>
-        <!-- endbuild -->
+    <script src="node_modules/ng-table/bundles/ng-table.min.js"></script>
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/routestate.js"></script>
+    <script src="scripts/main/main.ctrl.js"></script>
+    <script src="scripts/search/search.ctrl.js"></script>
+    <script src="scripts/table/table.ctrl.js"></script>
+    <script src="scripts/ngtable/ngtable.ctrl.js"></script>
+    <script src="scripts/search/search.srv.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
