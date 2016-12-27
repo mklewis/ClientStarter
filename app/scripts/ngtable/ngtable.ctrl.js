@@ -9,12 +9,13 @@ angular.module('clientApp')
     
 
     ngtableCtrl.headings = [
-        {name: "engine", title: "Rendering engine", collapseAt: null, sort: false, filter: true, filterType: "search" },
-        {name: "browser", title: "Browser", collapseAt: null, sort: true, filter: false, filterType: "search" },
-        {name: "platform", title: "Platform(s)", collapseAt: 'sm', sort: true, filter: true, filterType: "search" },
-        {name: "version", title: "Engine version", collapseAt: 'md', sort: true, filter: true, filterType: "search" },
-        {name: "gradeStyle", title: "CSS grade", collapseAt: 'md', sort: true, filter: true, filterType: "search" }
+        {field: "engine", title: "Rendering engine", show: true, collapseAt: null, sort: false, filter: { engine: "text" } },
+        {field: "browser", title: "Browser", show: true,  collapseAt: null, sort: true, filter: { browser: "text" } },
+        {field: "platform", title: "Platform(s)", show: true, collapseAt: 'sm', sort: true, filter: { platform: "text" } },
+        {field: "version", title: "Engine version", show: true,collapseAt: 'md', sort: true, filter: { version: "text" } },
+        {field: "gradeStyle", title: "CSS grade", show: true, collapseAt: 'md', sort: true, filter: { gradeStyle: "text" } }
     ];
+
     $rootScope.pageTitle = "Ng Table Exaple";
 
     ngtableCtrl.itemsByPage=15;
@@ -56,113 +57,118 @@ angular.module('clientApp')
 
     ngtableCtrl.showDetail =function(item){
         
-        item.show = !item.show;
+        item.showDetailAttr = !item.showDetailAttr;
         
     };
 
     ngtableCtrl.detailsToShow = function(){
         var show = false;
+        var showExpand = false;
         _.each(ngtableCtrl.headings, function(heading){
-            if (!ngtableCtrl.shouldShow(heading.name, false)){
-                show = true;
+            show = !ngtableCtrl.shouldShow(heading.field, false);
+            if(show){
+            showExpand = true;
             }
+            heading.show = !show;
         });
-        return show;
+        
+        return showExpand;
     };
 
     ngtableCtrl.shouldShow = function(colName, isDetailRow){
-        var col = _.find(ngtableCtrl.headings, {'name': colName});
+        var col = _.find( ngtableCtrl.headings, {'field': colName});
         if(!col){
             console.log("column not found " + colName);
-        }
-        if(!col.collapseAt){
-            return !isDetailRow;
         }else{
-            switch(col.collapseAt){
-                case 'lg':
-                    if(!isDetailRow){
-                        if(ngtableCtrl.media_lg)
-                            return false;
-                        if(ngtableCtrl.media_md)
-                            return false;
-                        if(ngtableCtrl.media_sm)
-                            return false;
-                        if(ngtableCtrl.media_xs)
-                            return false;
-                    }else{
-                        if(ngtableCtrl.media_lg)
-                            return true;
-                        if(ngtableCtrl.media_md)
-                            return true;
-                        if(ngtableCtrl.media_sm)
-                            return true;
-                        if(ngtableCtrl.media_xs)
-                            return true;
-                    }
-                    break;
-                case 'md':
-                    if(!isDetailRow){
-                        if(ngtableCtrl.media_lg)
-                            return true;
-                        if(ngtableCtrl.media_md)
-                            return false;
-                        if(ngtableCtrl.media_sm)
-                            return false;
-                        if(ngtableCtrl.media_xs)
-                            return false;
-                    }else{
-                        if(ngtableCtrl.media_lg)
-                            return false;
-                        if(ngtableCtrl.media_md)
-                            return true;
-                        if(ngtableCtrl.media_sm)
-                            return true;
-                        if(ngtableCtrl.media_xs)
-                            return true;
-                    }
-                    break;
-                case 'sm':
-                    if(!isDetailRow){
-                        if(ngtableCtrl.media_lg)
-                            return true;
-                        if(ngtableCtrl.media_md)
-                            return true;
-                        if(ngtableCtrl.media_sm)
-                            return false;
-                        if(ngtableCtrl.media_xs)
-                            return false;
-                    }else{
-                        if(ngtableCtrl.media_lg)
-                            return false;
-                        if(ngtableCtrl.media_md)
-                            return false;
-                        if(ngtableCtrl.media_sm)
-                            return true;
-                        if(ngtableCtrl.media_xs)
-                            return true;
-                    }
-                    break;
-                case 'xs':
-                    if(!isDetailRow){
-                        if(ngtableCtrl.media_lg)
-                            return true;
-                        if(ngtableCtrl.media_md)
-                            return true;
-                        if(ngtableCtrl.media_sm)
-                            return true;
-                        if(ngtableCtrl.media_xs)
-                            return false;
-                    }else{
-                        if(ngtableCtrl.media_lg)
-                            return false;
-                        if(ngtableCtrl.media_md)
-                            return false;
-                        if(ngtableCtrl.media_sm)
-                            return false;
-                        if(ngtableCtrl.media_xs)
-                            return true;
-                    }
-                    break;
+            if(!col.collapseAt){
+                return !isDetailRow;
+            }else{
+                switch(col.collapseAt){
+                    case 'lg':
+                        if(!isDetailRow){
+                            if(ngtableCtrl.media_lg)
+                                return false;
+                            if(ngtableCtrl.media_md)
+                                return false;
+                            if(ngtableCtrl.media_sm)
+                                return false;
+                            if(ngtableCtrl.media_xs)
+                                return false;
+                        }else{
+                            if(ngtableCtrl.media_lg)
+                                return true;
+                            if(ngtableCtrl.media_md)
+                                return true;
+                            if(ngtableCtrl.media_sm)
+                                return true;
+                            if(ngtableCtrl.media_xs)
+                                return true;
+                        }
+                        break;
+                    case 'md':
+                        if(!isDetailRow){
+                            if(ngtableCtrl.media_lg)
+                                return true;
+                            if(ngtableCtrl.media_md)
+                                return false;
+                            if(ngtableCtrl.media_sm)
+                                return false;
+                            if(ngtableCtrl.media_xs)
+                                return false;
+                        }else{
+                            if(ngtableCtrl.media_lg)
+                                return false;
+                            if(ngtableCtrl.media_md)
+                                return true;
+                            if(ngtableCtrl.media_sm)
+                                return true;
+                            if(ngtableCtrl.media_xs)
+                                return true;
+                        }
+                        break;
+                    case 'sm':
+                        if(!isDetailRow){
+                            if(ngtableCtrl.media_lg)
+                                return true;
+                            if(ngtableCtrl.media_md)
+                                return true;
+                            if(ngtableCtrl.media_sm)
+                                return false;
+                            if(ngtableCtrl.media_xs)
+                                return false;
+                        }else{
+                            if(ngtableCtrl.media_lg)
+                                return false;
+                            if(ngtableCtrl.media_md)
+                                return false;
+                            if(ngtableCtrl.media_sm)
+                                return true;
+                            if(ngtableCtrl.media_xs)
+                                return true;
+                        }
+                        break;
+                    case 'xs':
+                        if(!isDetailRow){
+                            if(ngtableCtrl.media_lg)
+                                return true;
+                            if(ngtableCtrl.media_md)
+                                return true;
+                            if(ngtableCtrl.media_sm)
+                                return true;
+                            if(ngtableCtrl.media_xs)
+                                return false;
+                        }else{
+                            if(ngtableCtrl.media_lg)
+                                return false;
+                            if(ngtableCtrl.media_md)
+                                return false;
+                            if(ngtableCtrl.media_sm)
+                                return false;
+                            if(ngtableCtrl.media_xs)
+                                return true;
+                        }
+                        break;
+                }
             }
         }
         return false;
