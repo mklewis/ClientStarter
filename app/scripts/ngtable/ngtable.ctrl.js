@@ -9,11 +9,11 @@ angular.module('clientApp')
     
 
     ngtableCtrl.headings = [
-        {field: "engine", title: "Rendering engine", show: true, collapseAt: null, sort: false, filter: { engine: "text" } },
-        {field: "browser", title: "Browser", show: true,  collapseAt: null, sort: true, filter: { browser: "text" } },
-        {field: "platform", title: "Platform(s)", show: true, collapseAt: 'sm', sort: true, filter: { platform: "text" } },
-        {field: "version", title: "Engine version", show: true,collapseAt: 'md', sort: true, filter: { version: "text" } },
-        {field: "gradeStyle", title: "CSS grade", show: true, collapseAt: 'md', sort: true, filter: { gradeStyle: "text" } }
+        {field: "engine", title: "Rendering engine", show: true, collapseAt: null, sortable: 'engine', filter: { engine: "text" } },
+        {field: "browser", title: "Browser", show: true,  collapseAt: null, sortable: 'browser', filter: { browser: "text" } },
+        {field: "platform", title: "Platform(s)", show: true, collapseAt: 'sm', sortable: 'platform', filter: { platform: "text" } },
+        {field: "version", title: "Engine version", show: true,collapseAt: 'md', sortable: 'version', filter: { version: "text" } },
+        {field: "gradeStyle", title: "CSS grade", show: true, collapseAt: 'md', sortable: 'gradeStyle', filter: { gradeStyle: "text" } }
     ];
 
     $rootScope.pageTitle = "Ng Table Exaple";
