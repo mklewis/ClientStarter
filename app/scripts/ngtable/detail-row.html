@@ -1,0 +1,7 @@
+<td colspan="{{tableCtrl.headings.length}}">
+    <ul>
+        <li ng-repeat="h in tableCtrl.headings" ng-show="tableCtrl.shouldShow(h.field, true)">
+            {{h.title}}: {{ itemObject[h.field] }}
+        </li>
+    </ul>
+</td>

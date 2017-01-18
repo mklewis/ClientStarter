@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('NgTableCtrl', [ '$rootScope', 'screenSize', 'NgTableParams',
-  function ( $rootScope, screenSize, NgTableParams ) {
+  .controller('NgTableCtrl', [ '$scope', '$rootScope', 'screenSize', 'NgTableParams',
+  function ( $scope, $rootScope, screenSize, NgTableParams ) {
 
     var ngtableCtrl = this;
     
@@ -74,6 +74,9 @@ angular.module('clientApp')
         
         return showExpand;
     };
+
+    // $scope.showDetail = ngtableCtrl.showDetail;
+
 
     ngtableCtrl.shouldShow = function(colName, isDetailRow){
         var col = _.find( ngtableCtrl.headings, {'field': colName});

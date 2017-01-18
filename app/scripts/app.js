@@ -19,7 +19,7 @@ var app = angular
     'matchMedia',
     'ngTable'
   ])
-  .directive('reponsive-table', function(){
+  .directive('reponsiveTable', function(){
     return {
                 require: '^ngTable',
                 restrict: ['E', 'A'],
@@ -27,8 +27,8 @@ var app = angular
                   breakPoints: '='
                 },
                 replace: true,
-                controller: VisibilityCtrl,
-                controllerAs: 'ctrl'
+                controller: ResponsiveTableCtrl,
+                controllerAs: 'vm'
                 
             }
 
