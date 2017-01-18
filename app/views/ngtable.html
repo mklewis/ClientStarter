@@ -7,7 +7,8 @@
             <span ng-if="$index == 0 && ngtableCtrl.detailsToShow()" class="fa" ng-class="{'fa-caret-right': !item.showDetailAttr, 'fa-caret-down': item.showDetailAttr}"> </span>            {{item[col.field]}}
           </td>
         </tr>
-        <tr ng-show="item.showDetailAttr && ngtableCtrl.detailsToShow()" detail-row item-object="item" table-ctrl="ngtableCtrl">
+        <tr ng-show="item.showDetailAttr && ngtableCtrl.detailsToShow()" 
+            detail-row item-object="item" table-ctrl="ngtableCtrl" headings="headings" show-column-fn="showColumn">
         </tr>
       </tbody>
     </table>
