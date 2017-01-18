@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('NgTableCtrl', ['$scope', '$rootScope', 'screenSize', 'NgTableParams',
-    function ($scope, $rootScope, screenSize, NgTableParams) {
+  .controller('NgTableCtrl', ['$rootScope', 'screenSize', 'NgTableParams',
+    function ($rootScope, screenSize, NgTableParams) {
 
       var ngtableCtrl = this;
-      $rootScope.pageTitle = "Ng Table Exaple";
-
+      $rootScope.pageTitle = "Table Example";
+      //break point options.
       var sizeMap = {
         'lg': 80,
         'md': 60,
@@ -16,15 +16,44 @@ angular.module('clientApp')
       var pageSize = 80;
 
       _.each(sizeMap, function (value, key) {
+          //add break point handler functions.
         screenSize.on(key, function (match) {
           if (match) {
             pageSize = value;
           }
         });
+        //set the initial pageSize.
         if (screenSize.is(key)) {
           pageSize = value;
         }
       });
+
+      ngtableCtrl.detailsToShow = function () {
+        var showExpand = false;
+        _.each(ngtableCtrl.headings, function (heading) {
+          heading.show = ngtableCtrl.showColumn(heading.collapseAt, false);
+          //if a column is not being shown the showExpand icon should be addded.
+          if (heading.show === false) {
+            showExpand = true;
+          }
+        });
+        return showExpand;
+      };
+      
+      //to determine if a column should be show or not based on its collapse at value.
+      ngtableCtrl.showColumn = function (collapseAt, isDetailRow) {
+        if (!collapseAt) {
+          return !isDetailRow;
+        }
+        var collapseSize = sizeMap[collapseAt];
+        if (!isDetailRow && collapseSize <= pageSize) {
+          return true;
+        }
+        if (isDetailRow && collapseSize > pageSize) {
+          return true;
+        }
+        return false;
+      };
 
       ngtableCtrl.headings = [{
           field: "engine",
@@ -77,45 +106,6 @@ angular.module('clientApp')
           }
         }
       ];
-
-      ngtableCtrl.showDetail = function (item) {
-        item.showDetailAttr = !item.showDetailAttr;
-      };
-
-      ngtableCtrl.detailsToShow = function () {
-        var show = false;
-        var showExpand = false;
-        _.each(ngtableCtrl.headings, function (heading) {
-          show = !ngtableCtrl.showColumn(heading.field, false);
-          if (show) {
-            showExpand = true;
-          }
-          heading.show = !show;
-        });
-
-        return showExpand;
-      };
-
-      ngtableCtrl.showColumn = function (colName, isDetailRow) {
-        var col = _.find(ngtableCtrl.headings, {
-          'field': colName
-        });
-        if (!col) {
-          console.log("column not found " + colName);
-          return false;
-        }
-        if (!col.collapseAt) {
-          return !isDetailRow;
-        }
-        var collapseSize = sizeMap[col.collapseAt];
-        if (!isDetailRow && collapseSize <= pageSize) {
-          return true;
-        }
-        if (isDetailRow && collapseSize > pageSize) {
-          return true;
-        }
-        return false;
-      };
 
       ngtableCtrl.data = [{
         "engine": "Trident",

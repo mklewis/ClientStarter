@@ -1,6 +1,6 @@
 <td colspan="{{tableCtrl[headings].length}}">
     <table class="table table-striped table-condensed">
-        <tr ng-repeat="h in tableCtrl[headings]" ng-show="tableCtrl[showColumnFn](h.field, true)">
+        <tr ng-repeat="h in tableCtrl[headings]" ng-show="tableCtrl[showColumnFn](h.collapseAt, true)">
             <td class="col-xs-4"> {{h.title}}</td>
             <td class="col-xs-8 text-left">{{itemObject[h.field]}}</td>
         </tr>

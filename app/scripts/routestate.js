@@ -19,13 +19,7 @@ angular.module('clientApp')
             controller: 'SearchCtrl',
             controllerAs: 'searchCtrl'
         })
-        .state({
-            name: 'table',
-            url: '/table',
-            templateUrl: 'views/table.html',
-            controller: 'TableCtrl',
-            controllerAs: 'tableCtrl'
-        }).state({
+       .state({
             name: 'ngtable',
             url: '/ngtable',
             templateUrl: 'views/ngtable.html',
