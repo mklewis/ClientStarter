@@ -1,7 +1,8 @@
 <td colspan="{{tableCtrl.headings.length}}">
-    <ul>
-        <li ng-repeat="h in tableCtrl.headings" ng-show="tableCtrl.shouldShow(h.field, true)">
-            {{h.title}}: {{ itemObject[h.field] }}
-        </li>
-    </ul>
+    <table class="table table-striped table-condensed">
+        <tr ng-repeat="h in tableCtrl.headings" ng-show="tableCtrl.showColumn(h.field, true)">
+            <td class="col-xs-4"> {{h.title}}</td>
+            <td class="col-xs-8 text-left">{{itemObject[h.field]}}</td>
+        </tr>
+    </table>
 </td>

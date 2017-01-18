@@ -1,17 +1,15 @@
 <div class="container-fluid">
-    <div class="row">
-        <table ng-table-dynamic="ngtableCtrl.tableParams with ngtableCtrl.headings" ng-table="" class="table" show-filter="true" >
-            <tbody ng-repeat="item in $data">
-                <tr ng-click="ngtableCtrl.showDetail(item);" ng-init="showDetail = ngtableCtrl.showDetail">
-                    <td ng-repeat="col in $columns">
-                        <span ng-if="$index == 0 && ngtableCtrl.detailsToShow()" class="fa" 
-                            ng-class="{'fa-caret-right': !item.showDetailAttr, 'fa-caret-down': item.showDetailAttr}"> </span> 
-                                {{item[col.field]}}</td>
-                </tr>
-                <tr ng-show="item.showDetailAttr && ngtableCtrl.detailsToShow()" 
-                        detail-row  item-object="item" table-ctrl="ngtableCtrl">
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="row">
+    <table ng-table-dynamic="ngtableCtrl.tableParams with ngtableCtrl.headings" ng-table="" class="table" show-filter="true">
+      <tbody ng-repeat="item in $data">
+        <tr ng-click="ngtableCtrl.showDetail(item);">
+          <td ng-repeat="col in $columns">
+            <span ng-if="$index == 0 && ngtableCtrl.detailsToShow()" class="fa" ng-class="{'fa-caret-right': !item.showDetailAttr, 'fa-caret-down': item.showDetailAttr}"> </span>            {{item[col.field]}}
+          </td>
+        </tr>
+        <tr ng-show="item.showDetailAttr && ngtableCtrl.detailsToShow()" detail-row item-object="item" table-ctrl="ngtableCtrl">
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

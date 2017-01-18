@@ -2,7 +2,7 @@
 
 angular.module('clientApp').directive("detailRow", function(){
     return {
-        restirct:"AE",
+        restirct:"E",
         templateUrl: "scripts/ngtable/detail-row.html",
         replace: false,
         scope: {
