@@ -1,58 +1,21 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('NgTableCtrl', ['$rootScope', 'screenSize', 'NgTableParams',
-    function ($rootScope, screenSize, NgTableParams) {
+  .controller('NgTableCtrl', ['$rootScope', 'NgTableParams', 'DetailRowService',
+    function ($rootScope, NgTableParams, detailRowService) {
 
       var ngtableCtrl = this;
-      $rootScope.pageTitle = "Table Example";
-      //break point options.
-      var sizeMap = {
-        'lg': 80,
-        'md': 60,
-        'sm': 40,
-        'xs': 20
-      };
-      var pageSize = 80;
-
-      _.each(sizeMap, function (value, key) {
-          //add break point handler functions.
-        screenSize.on(key, function (match) {
-          if (match) {
-            pageSize = value;
-          }
-        });
-        //set the initial pageSize.
-        if (screenSize.is(key)) {
-          pageSize = value;
-        }
-      });
-
-      ngtableCtrl.detailsToShow = function () {
-        var showExpand = false;
-        _.each(ngtableCtrl.headings, function (heading) {
-          heading.show = ngtableCtrl.showColumn(heading.collapseAt, false);
-          //if a column is not being shown the showExpand icon should be addded.
-          if (heading.show === false) {
-            showExpand = true;
-          }
-        });
-        return showExpand;
-      };
       
-      //to determine if a column should be show or not based on its collapse at value.
-      ngtableCtrl.showColumn = function (collapseAt, isDetailRow) {
-        if (!collapseAt) {
-          return !isDetailRow;
-        }
-        var collapseSize = sizeMap[collapseAt];
-        if (!isDetailRow && collapseSize <= pageSize) {
-          return true;
-        }
-        if (isDetailRow && collapseSize > pageSize) {
-          return true;
-        }
-        return false;
+      $rootScope.pageTitle = "Table Example";
+
+      var setPageSize = function(size){
+        ngtableCtrl.pageSize = size;
+      };
+
+      detailRowService.setPageSize(setPageSize);
+
+      ngtableCtrl.detailsToShow = function(){
+         return detailRowService.detailsToShow(ngtableCtrl.headings, ngtableCtrl.pageSize);
       };
 
       ngtableCtrl.headings = [{

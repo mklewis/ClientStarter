@@ -2,44 +2,54 @@
     <h2 >Responsive ng-table example</h2>
     <p>Implementation of ng-table using <code>ngTableDynamic</code> directive.  We've added the responsive option to collapse columns into detail table rows.
     Resize the screen to see the columns get removed for the table row and added to an accordian style detail list</p>
+    
     <div class="row">
         <button class="btn btn-primary" ng-click="ngtableCtrl.showFilters = !ngtableCtrl.showFilters"> Show/Hide Filters</button>
     </div>
+
     <div class="row">
-        <table ng-table-dynamic="ngtableCtrl.tableParams with ngtableCtrl.headings" 
-            class="table" show-filter="ngtableCtrl.showFilters">
+        <table  ng-table-dynamic="ngtableCtrl.tableParams with ngtableCtrl.headings" 
+                class="table" 
+                show-filter="ngtableCtrl.showFilters">
             <tbody ng-repeat="item in $data">
+                <!-- click to toggle the show and hide of the detail row -->
                 <tr ng-click="item.showDetailAttr = !item.showDetailAttr">
                     <td ng-repeat="col in $columns">
-                        <!-- used to show the expand/collapse icon -->
+                        <!-- used to show the expand/collapse icon only for the first column -->
                         <span ng-if="$index == 0 && ngtableCtrl.detailsToShow()" 
                             class="fa" ng-class="{'fa-caret-right': !item.showDetailAttr, 'fa-caret-down': item.showDetailAttr}">
                         </span>
                         {{item[col.field]}}
                     </td>
                 </tr>
+                <!-- Detail Row -->
                 <tr ng-show="item.showDetailAttr && ngtableCtrl.detailsToShow()" 
-                    detail-row item-object="item" table-ctrl="ngtableCtrl" headings="headings" show-column-fn="showColumn">
+                    detail-row 
+                    item-object="item"  
+                    headings="ngtableCtrl.headings" 
+                    page-size="ngtableCtrl.pageSize">
                 </tr>
             </tbody>
         </table>
-
-
     </div>
+
+
     <div class="row">
         <pre>   &lt;table ng-table-dynamic="ngtableCtrl.tableParams with ngtableCtrl.headings" 
         class="table" show-filter="ngtableCtrl.showFilters"&gt;
         &lt;tbody ng-repeat="item in $data"&gt;
             &lt;tr ng-click="item.showDetailAttr = !item.showDetailAttr"&gt;
                 &lt;td ng-repeat="col in $columns"&gt;
-                    &lt;span ng-if="$index == 0 &amp;&amp; ngtableCtrl.detailsToShow()" 
+                    &lt;ng-if="$index == 0 &amp;&amp; ngtableCtrl.detailsToShow() 
                         class="fa" ng-class="{'fa-caret-right': !item.showDetailAttr, 'fa-caret-down': item.showDetailAttr}"&gt;
                     &lt;/span&gt;
                     {{item[col.field]}}
                 &lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr ng-show="item.showDetailAttr &amp;&amp; ngtableCtrl.detailsToShow()" 
-                detail-row item-object="item" table-ctrl="ngtableCtrl" headings="headings" show-column-fn="showColumn"&gt;
+                    detail-row item-object="item"  
+                    headings="ngtableCtrl.headings" 
+                    page-size="ngtableCtrl.pageSize"&gt;
             &lt;/tr&gt;
         &lt;/tbody&gt;
     &lt;/table&gt;</pre>

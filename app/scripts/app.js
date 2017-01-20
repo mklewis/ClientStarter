@@ -16,7 +16,7 @@ var app = angular
     'toastr',
     'ui.bootstrap',
     'smart-table',  
-    'matchMedia',
-    'ngTable'
+    'ngTable',
+    'ngTableDetailRow'
   ]);
 
