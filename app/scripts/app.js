@@ -17,6 +17,7 @@ var app = angular
     'ui.bootstrap',
     'smart-table',  
     'ngTable',
-    'ngTableDetailRow'
+    'ngTableDetailRow',
+    'dndLists'
   ]);
 

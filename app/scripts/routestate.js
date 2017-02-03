@@ -25,6 +25,13 @@ angular.module('clientApp')
             templateUrl: 'views/ngtable.html',
             controller: 'NgTableCtrl',
             controllerAs: 'ngtableCtrl'
+        })
+        .state({
+            name: 'dndlist',
+            url: '/dndlist',
+            templateUrl: 'views/dndlist.html',
+            controller: 'DNDListCtrl',
+            controllerAs: 'dndlistCtrl'
         });
 
 
